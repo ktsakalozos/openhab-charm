@@ -1,0 +1,47 @@
+# Copyright 2021 jackal
+# See LICENSE file for licensing details.
+name: openhab
+description: |
+  Kubernetes charm for installing openhab
+summary: |
+  open Home Automation Bus is an open source home automation software.
+  It is deployed on premises and connects to devices and services from different vendors.
+  This charm deploys OpenHab on a Kubernetes cluster.
+
+containers:
+  openhab:
+    resource: openhab-image
+    mounts:
+      - storage: conf
+        location: /openhab/conf
+      - storage: userdata
+        location: /openhab/userdata
+      - storage: addons
+        location: /openhab/addons
+      - storage: java
+        location: /openhab/.java
+      - storage: karaf
+        location: /openhab/.karaf
+
+storage:
+  conf:
+    type: filesystem
+  userdata:
+    type: filesystem
+  addons:
+    type: filesystem
+  java:
+    type: filesystem
+  karaf:
+    type: filesystem
+
+resources:
+  openhab-image:
+    type: oci-image
+    description: OCI image for openhab (openhab/openhab)
+
+requires:
+  ingress:
+    interface: ingress
+    schema: https://raw.githubusercontent.com/canonical/operator-schemas/service-mesh-schemas/ingress.yaml
+    versions: [v1]
