@@ -1,12 +1,24 @@
 # OpenHAB charm
+Kubernetes charm for installing [openhab](https://www.openhab.org/) `v3.0.2`.
+
 
 ## Description
 
-TODO: Describe your charm in a few paragraphs of Markdown
+  [open Home Automation Bus](https://www.openhab.org/) is an open source home automation software.
+  It is deployed on premises and connects to devices and services from different vendors.
+  This charm deploys OpenHab on a Kubernetes cluster.
+
 
 ## Usage
 
-TODO: Provide high-level usage, such as required config or relations
+Deply the charm with:
+```dtd
+juju deploy openhab --channel=edge
+```
+
+The charm exposes the OpenHAB https interface on NodePort `31443` this means you can point your browser to the IP
+of any of you Kubernetes nodes on port `31443` to start interacting with OpenHAB. If you are doing a local deployment
+with [MicroK8s](https://microk8s.io) just navigate to https://127.0.0.1:31443.
 
 
 ## Developing
